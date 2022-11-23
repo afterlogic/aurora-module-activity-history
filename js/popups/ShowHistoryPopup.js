@@ -3,7 +3,7 @@
 var
 	_ = require('underscore'),
 	ko = require('knockout'),
-	moment = require('moment'),
+	// moment = require('moment'),
 
 	TextUtils = require('%PathToCoreWebclientModule%/js/utils/Text.js'),
 
