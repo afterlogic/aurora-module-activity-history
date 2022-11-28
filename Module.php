@@ -37,7 +37,7 @@ class Module extends \Aurora\System\Module\AbstractModule
 		$this->subscribeEvent('Files::DeletePublicLink::after', array($this, 'onAfterFilesDeletePublicLink'));
 		$this->subscribeEvent('CreatePublicLink::after', array($this, 'onAfterFilesCreatePublicLink'));
 		$this->subscribeEvent('OpenPgpFilesWebclient::ValidatePublicLinkPassword::after', array($this, 'onAfterValidatePublicLinkPassword'));
-		$this->subscribeEvent('Core::DeleteUser::before', array($this, 'onBeforeDeleteUser'));
+		$this->subscribeEvent('Core::DeleteUser::after', array($this, 'onAfterDeleteUser'));
 		$this->aDeniedMethodsByWebApi = [];
 	}
 
@@ -99,9 +99,11 @@ class Module extends \Aurora\System\Module\AbstractModule
 		$this->Delete($iUserId, 'file', $sResourceId);
 	}
 
-	public function onBeforeDeleteUser($aArgs, &$mResult)
+	public function onAfterDeleteUser($aArgs, &$mResult)
 	{
-		ActivityHistory::where('UserId', $aArgs['UserId'])->delete();
+		if ($mResult) {
+			ActivityHistory::where('UserId', $aArgs['UserId'])->delete();
+		}
 	}
 	/***** private functions *****/
 
