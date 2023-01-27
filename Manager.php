@@ -16,97 +16,94 @@ use Aurora\Modules\ActivityHistory\Models\ActivityHistory;
  */
 class Manager extends \Aurora\System\Managers\AbstractManager
 {
-	public function __construct(\Aurora\System\Module\AbstractModule $oModule = null)
-	{
-		parent::__construct($oModule);
-	}
+    public function __construct(\Aurora\System\Module\AbstractModule $oModule = null)
+    {
+        parent::__construct($oModule);
+    }
 
-	/**
-	 * @param string $sHashID
-	 * @param array $aParams
-	 *
-	 * @return string|bool
-	 */
-	public function Create($UserId, $ResourceType, $ResourceId, $IpAddress, $Action, $Time, $GuestPublicId)
-	{
-		return ActivityHistory::create([
-			'UserId' => $UserId,
-			'ResourceType' => $ResourceType,
-			'ResourceId' => $ResourceId,
-			'IpAddress' => $IpAddress,
-			'Action' => $Action,
-			'Timestamp' => $Time,
-			'GuestPublicId' => $GuestPublicId
-		]);
-	}
+    /**
+     * @param string $sHashID
+     * @param array $aParams
+     *
+     * @return string|bool
+     */
+    public function Create($UserId, $ResourceType, $ResourceId, $IpAddress, $Action, $Time, $GuestPublicId)
+    {
+        return ActivityHistory::create([
+            'UserId' => $UserId,
+            'ResourceType' => $ResourceType,
+            'ResourceId' => $ResourceId,
+            'IpAddress' => $IpAddress,
+            'Action' => $Action,
+            'Timestamp' => $Time,
+            'GuestPublicId' => $GuestPublicId
+        ]);
+    }
 
-		/**
-	 * @param string $sHashID
-	 *
-	 * @return array|bool
-	 */
-	public function GetListByUserId($UserId)
-	{
-		return ActivityHistory::where('UserId',$UserId)->get();
-	}
+        /**
+     * @param string $sHashID
+     *
+     * @return array|bool
+     */
+    public function GetListByUserId($UserId)
+    {
+        return ActivityHistory::where('UserId', $UserId)->get();
+    }
 
-	public function DeleteActivityHistory($iId)
-	{
-		$bResult = false;
-		
-		try
-		{
-			$bResult = !!ActivityHistory::find($iId)->delete();
-		}
-		catch (\Aurora\System\Exceptions\BaseException $oException)
-		{
-			$this->setLastException($oException);
-		}
+    public function DeleteActivityHistory($iId)
+    {
+        $bResult = false;
 
-		return $bResult;
-	}
+        try {
+            $bResult = !!ActivityHistory::find($iId)->delete();
+        } catch (\Aurora\System\Exceptions\BaseException $oException) {
+            $this->setLastException($oException);
+        }
 
-	/**
-	 * @param string $sHashID
-	 *
-	 * @return array|bool
-	 */
-	public function GetList($UserId, $ResourceType, $ResourceId, $Offset, $Limit)
-	{
-		$oQuery = ActivityHistory::where([
-			['UserId', '=', $UserId],
-			['ResourceType', '=', $ResourceType],
-			['ResourceId', '=', $ResourceId],
-		]);
-		if ($Offset > 0) {
-			$oQuery = $oQuery->offset($Offset);
-		}
-		if ($Limit > 0) {
-			$oQuery = $oQuery->limit($Limit);
-		}
-		return $oQuery->get();
-	}
+        return $bResult;
+    }
 
-	/**
-	 * @param string $sHashID
-	 *
-	 * @return array|bool
-	 */
-	public function GetListCount($UserId, $ResourceType, $ResourceId)
-	{
-		return ActivityHistory::where([
-			['UserId', '=', $UserId],
-			['ResourceType', '=', $ResourceType],
-			['ResourceId', '=', $ResourceId],
-		])->count();
-	}
+    /**
+     * @param string $sHashID
+     *
+     * @return array|bool
+     */
+    public function GetList($UserId, $ResourceType, $ResourceId, $Offset, $Limit)
+    {
+        $oQuery = ActivityHistory::where([
+            ['UserId', '=', $UserId],
+            ['ResourceType', '=', $ResourceType],
+            ['ResourceId', '=', $ResourceId],
+        ]);
+        if ($Offset > 0) {
+            $oQuery = $oQuery->offset($Offset);
+        }
+        if ($Limit > 0) {
+            $oQuery = $oQuery->limit($Limit);
+        }
+        return $oQuery->get();
+    }
 
-	public function Delete($UserId, $ResourceType, $ResourceId)
-	{
-		return ActivityHistory::where([
-			['UserId', '=', $UserId],
-			['ResourceType', '=', $ResourceType],
-			['ResourceId', '=', $ResourceId],
-		])->delete();
-	}
+    /**
+     * @param string $sHashID
+     *
+     * @return array|bool
+     */
+    public function GetListCount($UserId, $ResourceType, $ResourceId)
+    {
+        return ActivityHistory::where([
+            ['UserId', '=', $UserId],
+            ['ResourceType', '=', $ResourceType],
+            ['ResourceId', '=', $ResourceId],
+        ])->count();
+    }
+
+    public function Delete($UserId, $ResourceType, $ResourceId)
+    {
+        return ActivityHistory::where([
+            ['UserId', '=', $UserId],
+            ['ResourceType', '=', $ResourceType],
+            ['ResourceId', '=', $ResourceId],
+        ])->delete();
+    }
 }

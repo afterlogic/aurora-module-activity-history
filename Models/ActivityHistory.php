@@ -23,19 +23,19 @@ use Aurora\Modules\Core\Models\User;
  */
 class ActivityHistory extends \Aurora\System\Classes\Model
 {
-	protected $table = 'core_activity_history';
+    protected $table = 'core_activity_history';
 
-	protected $foreignModel = User::class;
-	protected $foreignModelIdColumn = 'UserId'; // Column that refers to an external table
+    protected $foreignModel = User::class;
+    protected $foreignModelIdColumn = 'UserId'; // Column that refers to an external table
 
-	protected $fillable = [
-		'Id',
-		'UserId',
-		'ResourceType',
-		'ResourceId',
-		'IpAddress',
-		'Action',
-		'Timestamp',
-		'GuestPublicId'
-	];
+    protected $fillable = [
+        'Id',
+        'UserId',
+        'ResourceType',
+        'ResourceId',
+        'IpAddress',
+        'Action',
+        'Timestamp',
+        'GuestPublicId'
+    ];
 }
