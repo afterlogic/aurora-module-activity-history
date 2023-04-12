@@ -22,13 +22,18 @@ class Manager extends \Aurora\System\Managers\AbstractManager
     }
 
     /**
-     * @param string $sHashID
-     * @param array $aParams
-     *
+     * @param int $UserId
+     * @param string $ResourceType
+     * @param string $ResourceId
+     * @param string $IpAddress
+     * @param string $Action
+     * @param int $Time
+     * @param string $GuestPublicId
      * @return string|bool
      */
     public function Create($UserId, $ResourceType, $ResourceId, $IpAddress, $Action, $Time, $GuestPublicId)
     {
+        /* @phpstan-ignore-next-line */
         return ActivityHistory::create([
             'UserId' => $UserId,
             'ResourceType' => $ResourceType,
@@ -41,7 +46,7 @@ class Manager extends \Aurora\System\Managers\AbstractManager
     }
 
         /**
-     * @param string $sHashID
+     * @param int $UserId
      *
      * @return array|bool
      */
@@ -64,7 +69,11 @@ class Manager extends \Aurora\System\Managers\AbstractManager
     }
 
     /**
-     * @param string $sHashID
+     * @param int $UserId
+     * @param string $ResourceType
+     * @param string $ResourceId
+     * @param int $Offset
+     * @param int $Limit
      *
      * @return array|bool
      */
@@ -85,7 +94,9 @@ class Manager extends \Aurora\System\Managers\AbstractManager
     }
 
     /**
-     * @param string $sHashID
+     * @param int $UserId
+     * @param string $ResourceType
+     * @param string $ResourceId
      *
      * @return array|bool
      */

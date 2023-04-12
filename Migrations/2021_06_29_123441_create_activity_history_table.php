@@ -18,7 +18,7 @@ class CreateActivityHistoryTable extends Migration
             $table->integer('UserId')->default(0);
             $table->string('ResourceType')->default('');
             $table->string('ResourceId')->default('');
-            $table->string('IpAddress')->default();
+            $table->string('IpAddress')->default('');
             $table->string('Action')->default('');
             $table->integer('Timestamp')->default(0);
             $table->string('GuestPublicId')->default('');
