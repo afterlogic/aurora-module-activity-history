@@ -41,6 +41,15 @@ class Module extends \Aurora\System\Module\AbstractModule
         $this->aDeniedMethodsByWebApi = [];
     }
 
+    /**
+     *
+     * @return Module
+     */
+    public static function Decorator()
+    {
+        return parent::Decorator();
+    }
+
     public function onAddToActivityHistory($aParams, &$mResult)
     {
         $iUserId = 0;
