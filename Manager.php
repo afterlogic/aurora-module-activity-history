@@ -35,7 +35,6 @@ class Manager extends \Aurora\System\Managers\AbstractManager
      */
     public function Create($UserId, $ResourceType, $ResourceId, $IpAddress, $Action, $Time, $GuestPublicId)
     {
-        /* @phpstan-ignore-next-line */
         return ActivityHistory::create([
             'UserId' => $UserId,
             'ResourceType' => $ResourceType,

@@ -32,6 +32,7 @@ use Aurora\Modules\Core\Models\User;
  * @method static \Illuminate\Database\Eloquent\Builder|ActivityHistory newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ActivityHistory newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ActivityHistory query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ActivityHistory create(array $attributes)
  * @method static \Illuminate\Database\Eloquent\Builder|\Aurora\Modules\ActivityHistory\Models\ActivityHistory where(Closure|string|array|\Illuminate\Database\Query\Expression $column, mixed $operator = null, mixed $value = null, string $boolean = 'and')
  * @method static \Illuminate\Database\Eloquent\Builder|ActivityHistory whereAction($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ActivityHistory whereCreatedAt($value)
