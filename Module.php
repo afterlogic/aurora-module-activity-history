@@ -181,7 +181,7 @@ class Module extends \Aurora\System\Module\AbstractModule
         \Aurora\System\Api::checkUserRoleIsAtLeast(\Aurora\System\Enums\UserRole::NormalUser);
         Api::CheckAccess($UserId);
         return [
-            'Items' => $this->oManager->GetList($UserId, $ResourceType, $ResourceId, $Offset, $Limit)->toArray(),
+            'Items' => $this->oManager->GetList($UserId, $ResourceType, $ResourceId, $Offset, $Limit)->all(),
             'Count' => $this->oManager->GetListCount($UserId, $ResourceType, $ResourceId)
         ];
     }
