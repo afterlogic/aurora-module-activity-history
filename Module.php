@@ -40,7 +40,6 @@ class Module extends \Aurora\System\Module\AbstractModule
         $this->subscribeEvent('CreatePublicLink::after', array($this, 'onAfterFilesCreatePublicLink'));
         $this->subscribeEvent('OpenPgpFilesWebclient::ValidatePublicLinkPassword::after', array($this, 'onAfterValidatePublicLinkPassword'));
         $this->subscribeEvent('Core::DeleteUser::after', array($this, 'onAfterDeleteUser'));
-        $this->aDeniedMethodsByWebApi = [];
     }
 
     /**
